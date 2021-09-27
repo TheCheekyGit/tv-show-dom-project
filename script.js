@@ -1,11 +1,18 @@
 //You can edit ALL of the code here
 const rootElem = document.getElementById("root");
 
-function setup() {
-  const allEpisodes = getAllEpisodes();
+
+function setup() { 
+  const allEpisodes = getAllEpisodes(); 
   makePageForEpisodes(allEpisodes); 
+  let searchEpisodesBox = document.querySelector("#searchEpisodes");
+  searchEpisodesBox.addEventListener("keyup", searchEpisodes);
+
 }
 
+function searchEpisodes(){
+  console.log ("Yes");
+}
 function makePageForEpisodes(episodeList) {
   //rootElem.textContent = `${episodeList.length} episode(s)`;
   episodeList.forEach(createCard);
@@ -47,4 +54,4 @@ rootElem.appendChild(card);
 }
 
 window.onload = setup;
-
+    
