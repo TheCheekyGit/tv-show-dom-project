@@ -3,8 +3,14 @@ const rootElem = document.getElementById("root");
 
 
 function setup() { 
-  const allEpisodes = getAllEpisodes(); 
-  makePageForEpisodes(allEpisodes); 
+  //const allEpisodes = getAllEpisodes(); 
+  //makePageForEpisodes(allEpisodes); 
+  
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+   .then((response) => response.json())
+   .then((episodeList) => {
+     makePageForEpisodes(episodeList);
+   });
 
   let searchEpisodesBox = document.querySelector("#searchEpisodes");
   searchEpisodesBox.addEventListener("keyup", searchEpisodes);
@@ -16,14 +22,14 @@ function searchEpisodes(){
    console.log(searchEpisodesBox.value);
 
    const allEpisodes = getAllEpisodes();
-   let filteredEpisodes = allEpisodes.filter(filterEpisodes);//problem
+   let filteredEpisodes = allEpisodes.filter(filterEpisodes);
     makePageForEpisodes(filteredEpisodes);
 
   }
 
 function filterEpisodes(episode){
  let searchEpisodesBox = document.querySelector("#searchEpisodes");
-   console.log(searchEpisodesBox.value); //problem
+   console.log(searchEpisodesBox.value); 
     
    rootElem.innerHTML = "";
 
@@ -41,8 +47,7 @@ function makePageForEpisodes(episodeList) {
 
 function createCard(episode){
   console.log(episode.image.medium);
-
-let card = document.createElement("span");
+ let card = document.createElement("span");
 
 let cardTitle = document.createElement("h3");
 cardTitle.innerText = episode.name;
@@ -71,8 +76,10 @@ card.appendChild(cardEpisodeSummary);
 card.className = "episodeList";
 rootElem.appendChild(card);
 }
+ }
 
-}
+
+
 
 window.onload = setup;
     
