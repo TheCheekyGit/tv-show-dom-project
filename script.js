@@ -5,16 +5,37 @@ const rootElem = document.getElementById("root");
 function setup() { 
   const allEpisodes = getAllEpisodes(); 
   makePageForEpisodes(allEpisodes); 
+
   let searchEpisodesBox = document.querySelector("#searchEpisodes");
   searchEpisodesBox.addEventListener("keyup", searchEpisodes);
 
 }
 
 function searchEpisodes(){
-  console.log ("Yes");
+   let searchEpisodesBox = document.querySelector("#searchEpisodes");
+   console.log(searchEpisodesBox.value);
+
+   const allEpisodes = getAllEpisodes();
+   let filteredEpisodes = allEpisodes.filter(filterEpisodes);//problem
+    makePageForEpisodes(filteredEpisodes);
+
+  }
+
+function filterEpisodes(episode){
+ let searchEpisodesBox = document.querySelector("#searchEpisodes");
+   console.log(searchEpisodesBox.value); //problem
+    
+   rootElem.innerHTML = "";
+
+   if(episode.name.toLowerCase().includes(searchEpisodesBox.value.toLowerCase())){
+     return true;
+   }else{
+     return false;
+   } 
 }
+
 function makePageForEpisodes(episodeList) {
-  //rootElem.textContent = `${episodeList.length} episode(s)`;
+ 
   episodeList.forEach(createCard);
 }
 
