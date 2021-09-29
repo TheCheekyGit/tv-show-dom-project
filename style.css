@@ -4,13 +4,24 @@
   margin: 1em;
   text-align: center;
 }
+.header {
+  display: flex;
 
+  background-color: #3f3f3f;
+  color: #fff;
+  width: 80%;
+  height: 8rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+}
 .searchEpisodes {
   display: flex;
-  flex-direction: column;
+  flex-direction: center;
   background-color: #b48c36;
   color: #040404;
   margin: 0.5em;
+  border-radius: 8px;
+  padding: 2em;
 }
 
 .body {

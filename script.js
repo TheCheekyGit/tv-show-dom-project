@@ -7,7 +7,7 @@ function setup() {
   //makePageForEpisodes(allEpisodes); 
   
   
-  fetch("https://api.tvmaze.com/shows/87/episodes")
+  fetch("https://api.tvmaze.com/shows/82/episodes")
    .then((response) => response.json())
    .then((episodeList) => {
      makePageForEpisodes(episodeList);
