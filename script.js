@@ -51,7 +51,6 @@ function  eventListnerShowDropDown(allShows){
     console.log(showId);
     
     async function catchBunnyEars(id){
-      //console.log("Hello");//
       fetch(`https://api.tvmaze.com/shows/${id}/episodes`).then(response => response.json()).then((episodesList)=> {
       makePageForEpisodes(episodesList);
       createDropDownList(episodesList);
@@ -75,7 +74,7 @@ function createDropDownList (allEpisodes){
    refresh.replaceChildren([]);
    let createOption = document.createElement("option");
    createOption.value = "non-option"
-   createOption.innerText = "All episodes"
+   createOption.innerText = "Filter episodes"
    refresh.appendChild(createOption)
    allEpisodes.forEach(createOptionForEpisodes);
    eventListnerForDropDown(allEpisodes);
@@ -127,7 +126,7 @@ function filterEpisodes(episode){
 }
 
 function makePageForEpisodes(episodeList) {
-  rootElem.textContent = `Displaying ${episodeList.length} episode(s)`;
+  rootElem.textContent = `Number of episodes ${episodeList.length} `;
   /*rootElem.replaceChildren([]);*/
   episodeList.forEach(createCard);
 

@@ -19,9 +19,10 @@
 }
 .logo {
   display: flex;
-  flex-direction: center;
+  flex-direction: column;
   padding: 2em;
   margin: 1em;
+  margin-left: 1.25em;
 }
 .access {
   display: flex;
@@ -94,7 +95,7 @@
   font-size: 0.8em;
   width: 15rem;
   height: 27rem;
-  margin: 0.5rem;
+  margin: 1.075rem;
   border-radius: 8px;
 }
 .episodeList:hover {
