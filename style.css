@@ -26,7 +26,6 @@
 .access {
   display: flex;
   flex-direction: column;
-
   gap: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
@@ -36,6 +35,39 @@
   font-size: 0.75em;
   text-align: left;
 }
+.searchbtn {
+  display: flexbox;
+  box-sizing: border-box;
+  width: 100%;
+  height: 1.75rem;
+  margin: 0 0 1.0666666667rem;
+  padding: 0.5rem;
+  border: 0.5px solid #cacaca;
+  border-radius: 8px;
+  background-color: #fefefe;
+  box-shadow: inset 0 1px 2px #467e79;
+  font-family: open sans, sans-serif;
+  font-size: 1.0666666667rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0a0a0a;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+  appearance: none;
+}
+
+.dropDownMenu {
+  display: flex;
+  margin: 1em;
+  border: none;
+  width: 100%;
+  height: 1.75rem;
+  margin: 0 0 1.0666666667rem;
+  padding: 0.5rem;
+  border: 0.5px solid #cacaca;
+  border-radius: 8px;
+  background-color: #fefefe;
+}
+
 .searchEpisodes {
   display: flex;
   flex-direction: center;
@@ -45,13 +77,11 @@
   border-radius: 8px;
   padding: 2em;
 }
-
 .body {
   background-color: #f0f3ee;
   margin: 2em;
   padding: 3em;
 }
-
 .episodeList {
   display: inline-flex;
   flex-direction: column;
@@ -67,7 +97,6 @@
   margin: 0.5rem;
   border-radius: 8px;
 }
-
 .episodeList:hover {
   transform: scale(1.07);
   box-shadow: 0px 10px 30px 0px #467e79;
