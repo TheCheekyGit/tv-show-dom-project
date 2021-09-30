@@ -1,6 +1,6 @@
 //You can edit ALL of the code here
 const rootElem = document.getElementById("root");
-
+const shows = getAllShows();
 
 
 function setup() { 
@@ -8,7 +8,7 @@ function setup() {
   //makePageForEpisodes(allEpisodes); 
   
   
-  fetch("https://api.tvmaze.com/shows/82/episodes")
+  fetch("https://api.tvmaze.com/shows/1632/episodes")
    .then((response) => response.json())
    .then((episodeList) => {
      makePageForEpisodes(episodeList);
@@ -24,6 +24,44 @@ function setup() {
 //inputSearch.addEventListener("keyup", searchEpisodes)
 //}
 
+function showSelector(show){
+ let select = document.getElementById("shows");
+ let option = document.createElement("option");
+ option.value = show.name;
+ option.innerText = show.name;
+ select.appendChild(option);
+}
+
+function showDropDownList (allShows){
+  allShows.forEach(showSelector);
+  eventListnerShowDropDown(allShows);
+}
+
+showDropDownList(shows);
+
+function  eventListnerShowDropDown(allShows){
+  let selected = document.getElementById("shows");
+  selected.addEventListener("change", function(){
+   let optionElement = document.querySelectorAll("option");
+    let names= [];
+    optionElement.forEach((option) => names.push(option.value));
+    let selectedName = names.filter((name) =>selected.value === name);
+    let getOneShow = shows.filter((show) => show.name == selectedName); 
+    let showId = getOneShow[0].id;
+    console.log(showId);
+    
+    async function catchBunnyEars(id){
+      //console.log("Hello");//
+      fetch(`https://api.tvmaze.com/shows/${id}/episodes`).then(response => response.json()).then((episodesList)=> {
+      makePageForEpisodes(episodesList);
+      createDropDownList(episodesList);
+      console.log("episodesList");
+  })
+    }
+    catchBunnyEars(showId);
+    });
+}
+
 function createOptionForEpisodes (episode){
   let select = document.getElementById("dropDownMenu");
   let option = document.createElement("option");
@@ -33,8 +71,14 @@ function createOptionForEpisodes (episode){
 }
 
 function createDropDownList (allEpisodes){
-  allEpisodes.forEach(createOptionForEpisodes);
-  eventListnerForDropDown(allEpisodes)
+   let refresh = document.getElementById("dropDownMenu");
+   refresh.replaceChildren([]);
+   let createOption = document.createElement("option");
+   createOption.value = "non-option"
+   createOption.innerText = "All episodes"
+   refresh.appendChild(createOption)
+   allEpisodes.forEach(createOptionForEpisodes);
+   eventListnerForDropDown(allEpisodes);
   
 }
 
@@ -70,7 +114,6 @@ let filteredEpisodes = allEpisodes.filter(filterEpisodes);
 
   }
 
- 
 function filterEpisodes(episode){
     let searchEpisodesBox = document.querySelector("#searchEpisodes");
    console.log(searchEpisodesBox.value); 
