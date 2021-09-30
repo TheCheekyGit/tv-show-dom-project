@@ -2,6 +2,7 @@
 const rootElem = document.getElementById("root");
 
 
+
 function setup() { 
   //const allEpisodes = getAllEpisodes(); 
   //makePageForEpisodes(allEpisodes); 
@@ -12,12 +13,16 @@ function setup() {
    .then((episodeList) => {
      makePageForEpisodes(episodeList);
      createDropDownList(episodeList);
+     //keyUpEventListner(searchEpisodes);
    });
 
   let searchEpisodesBox = document.querySelector("#searchEpisodes");
   searchEpisodesBox.addEventListener("keyup", searchEpisodes);
 
 }
+//function keyUpEventListner(episodes){
+//inputSearch.addEventListener("keyup", searchEpisodes)
+//}
 
 function createOptionForEpisodes (episode){
   let select = document.getElementById("dropDownMenu");
@@ -42,7 +47,6 @@ function eventListnerForDropDown(episodes){
     let selectedName = names.filter((name) =>selectId.value === name);
     let getOneEpisode = episodes.filter((episode) => episode.name == selectedName);
 
-      
       if (getOneEpisode.length === 1){
         makePageForEpisodes(getOneEpisode);
       }else{
@@ -66,7 +70,7 @@ let filteredEpisodes = allEpisodes.filter(filterEpisodes);
 
   }
 
-  
+ 
 function filterEpisodes(episode){
     let searchEpisodesBox = document.querySelector("#searchEpisodes");
    console.log(searchEpisodesBox.value); 
@@ -80,12 +84,15 @@ function filterEpisodes(episode){
 }
 
 function makePageForEpisodes(episodeList) {
-  
-  rootElem.replaceChildren([]);
+  rootElem.textContent = `Displaying ${episodeList.length} episode(s)`;
+  /*rootElem.replaceChildren([]);*/
   episodeList.forEach(createCard);
 
 }
-
+function displayEpisodes(numberOfEpisodes){
+   rootElem.textContent = `Displaying ${episodeList.length} episode(s)`;
+   
+}
 
 function createCard(episode){
   console.log(episode.image.medium);
